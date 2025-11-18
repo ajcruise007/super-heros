@@ -1,0 +1,38 @@
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.search-input {
+
+  width: 200px;
+  height: 25px;
+}
+
+.suggestions {
+  width: 200px;
+
+}
+
+.suggestion {
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.heros-container {
+  margin-top: 100px;
+  display: flex;
+  width: 100%;
+  
+}
+
+.hero-card{
+  width: 130px;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 5px;
+}
