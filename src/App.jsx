@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Comparison from "./components/Comparison";
 import SuperheroSearch from "./components/SuperheroSearch";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [selectedHeros, setSelectedheros] = useState([]);
