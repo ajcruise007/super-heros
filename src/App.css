@@ -1,38 +1,64 @@
-
-
-.container{
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
 
+.search-container {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
 }
 
 .search-input {
-
-  width: 200px;
-  height: 25px;
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 16px;
 }
 
 .suggestions {
-  width: 200px;
-
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 324px;
+  max-height: 250px;
+  overflow-y: auto;
+  position: absolute;
+  background-color: white;
 }
 
 .suggestion {
   border: 1px solid black;
   cursor: pointer;
+  padding: 10px;
 }
 
 .heros-container {
   margin-top: 100px;
   display: flex;
   width: 100%;
-  
 }
 
-.hero-card{
+.hero-card {
   width: 130px;
   border: 1px solid black;
   margin: 10px;
   padding: 5px;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.finish-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
 }

@@ -1,12 +1,27 @@
 import React, { useEffect, useState } from "react";
 import SelectedHeros from "./SelectedHeros";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const SuperheroSearch = () => {
+const SuperheroSearch = ({
+  selectedHeros,
+  setSelectedheros,
+  checkedHeros,
+  setCheckedHeros,
+}) => {
   const [inputText, setInputText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [selectedHeros, setSelectedheros] = useState([]);
-  const [checkedHeros, setCheckedhHeros] = useState([]);
+
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.reset) {
+      setSelectedheros([]);
+      setCheckedHeros([]);
+    }
+  }, [location.state, setSelectedheros, setCheckedHeros]);
   useEffect(() => {
     if (inputText.trim().length === 0) {
       setSuggestions([]);
@@ -55,7 +70,8 @@ const SuperheroSearch = () => {
     const ifSuggestionPresent = selectedHeros.some(
       (suggestion) => suggestion.id === selectedSuggestion.id
     );
-    if (!ifSuggestionPresent) {
+    const ifSelectedLimitExhausted = selectedHeros.length === 5;
+    if (!ifSuggestionPresent && !ifSelectedLimitExhausted) {
       setSelectedheros((prev) => [...prev, selectedSuggestion]);
     }
 
@@ -63,9 +79,9 @@ const SuperheroSearch = () => {
   };
   const handleCheckBoxChange = (e, hero) => {
     if (e.target.checked) {
-      setCheckedhHeros((prev) => [...prev, hero]);
+      setCheckedHeros((prev) => [...prev, hero]);
     } else {
-      setCheckedhHeros((prev) => prev.filter((prev) => prev.id !== hero.id));
+      setCheckedHeros((prev) => prev.filter((prev) => prev.id !== hero.id));
     }
   };
 
@@ -79,30 +95,42 @@ const SuperheroSearch = () => {
           onChange={(e) => handleInputChange(e)}
           placeholder="Search Superheroes"
         />
+        {loading ? (
+          <div>Loading....</div>
+        ) : (
+          <div className="suggestions">
+            {suggestions?.map((suggestion) => {
+              return (
+                <div
+                  key={suggestion.id}
+                  className="suggestion"
+                  onClick={() => {
+                    handleSuggestionClick(suggestion);
+                  }}
+                >
+                  {suggestion.name}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
-      {loading ? (
-        <div>Loading....</div>
-      ) : (
-        <div className="suggestions">
-          {suggestions?.map((suggestion) => {
-            return (
-              <div
-                key={suggestion.id}
-                className="suggestion"
-                onClick={() => {
-                  handleSuggestionClick(suggestion);
-                }}
-              >
-                {suggestion.name}
-              </div>
-            );
-          })}
-        </div>
-      )}
+
       <SelectedHeros
         heros={selectedHeros}
         handleCheckBoxChange={handleCheckBoxChange}
+        checkedHeros={checkedHeros}
       />
+
+      {checkedHeros.length > 1 && (
+        <button
+          onClick={() => {
+            navigate("/comparison", { state: { checkedHeros: checkedHeros } });
+          }}
+        >
+          Compare
+        </button>
+      )}
     </div>
   );
 };
