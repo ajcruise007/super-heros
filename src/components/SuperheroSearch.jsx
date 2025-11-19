@@ -87,7 +87,7 @@ const SuperheroSearch = ({
         suggestions={suggestions}
         handleSuggestionClick={handleSuggestionClick}
       />
-
+      <h4>Please select atleast 2 superheroes to start comparing</h4>
       <SelectedHeros
         heros={selectedHeros}
         handleCheckBoxChange={handleCheckBoxChange}
