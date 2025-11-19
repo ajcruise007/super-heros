@@ -97,7 +97,7 @@ const SuperheroSearch = ({
       {checkedHeros.length > 1 && (
         <button
           onClick={() => {
-            navigate("/comparison", { state: { checkedHeros: checkedHeros } });
+            navigate("/comparison");
           }}
         >
           Compare
