@@ -24,7 +24,13 @@ function App() {
         />
         <Route
           path="/comparison"
-          element={<Comparison checkedHeros={checkedHeros}  setSelectedheros={setSelectedheros}   setCheckedHeros={setCheckedHeros}/>}
+          element={
+            <Comparison
+              checkedHeros={checkedHeros}
+              setSelectedheros={setSelectedheros}
+              setCheckedHeros={setCheckedHeros}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

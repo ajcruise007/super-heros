@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SelectedHeros from "./SelectedHeros";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SuperheroSearch = ({
   selectedHeros,
@@ -14,14 +14,6 @@ const SuperheroSearch = ({
 
   const navigate = useNavigate();
 
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.state?.reset) {
-      setSelectedheros([]);
-      setCheckedHeros([]);
-    }
-  }, [location.state, setSelectedheros, setCheckedHeros]);
   useEffect(() => {
     if (inputText.trim().length === 0) {
       setSuggestions([]);

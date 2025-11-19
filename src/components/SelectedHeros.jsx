@@ -10,7 +10,7 @@ const SelectedHeros = ({ heros, handleCheckBoxChange, checkedHeros }) => {
         const { intelligence, strength, speed, durability, power, combat } =
           hero.powerstats;
         return (
-          <div className="hero-card">
+          <div className="hero-card" key={hero.id}>
             <input
               type="checkbox"
               checked={checkedHeros.some(
