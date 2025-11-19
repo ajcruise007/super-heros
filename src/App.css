@@ -62,3 +62,7 @@ th {
   display: flex;
   justify-content: end;
 }
+
+.highlight {
+  background-color: cyan;
+}
