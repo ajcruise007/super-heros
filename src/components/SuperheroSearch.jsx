@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SelectedHeros from "./SelectedHeros";
 import { useNavigate } from "react-router-dom";
+import SearchContainer from "./SearchContainer";
 
 const SuperheroSearch = ({
   selectedHeros,
@@ -79,34 +80,13 @@ const SuperheroSearch = ({
 
   return (
     <div className="container">
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          value={inputText}
-          onChange={(e) => handleInputChange(e)}
-          placeholder="Search Superheroes"
-        />
-        {loading ? (
-          <div>Loading....</div>
-        ) : (
-          <div className="suggestions">
-            {suggestions?.map((suggestion) => {
-              return (
-                <div
-                  key={suggestion.id}
-                  className="suggestion"
-                  onClick={() => {
-                    handleSuggestionClick(suggestion);
-                  }}
-                >
-                  {suggestion.name}
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
+      <SearchContainer
+        loading={loading}
+        inputText={inputText}
+        handleInputChange={handleInputChange}
+        suggestions={suggestions}
+        handleSuggestionClick={handleSuggestionClick}
+      />
 
       <SelectedHeros
         heros={selectedHeros}
